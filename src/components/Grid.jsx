@@ -18,12 +18,22 @@ function Grid() {
                     : "Legs";
 
             const trainingPlan = training_plan[index];
+            const dayNum = (index / 8 <= 1)? "0" + (index + 1) : index + 1;
+            const icon = index % 3 === 0 ? (
+                        <i className="fa-solid fa-dumbbell"></i>
+                    ) : index % 3 === 1 ? (
+                        <i className="fa-solid fa-weight-hanging"></i>
+                    ) : (
+                        <i className="fa-solid fa-bolt"></i>
+                    ) 
 
             if (index === selectedWorkout) {
                 return <WorkoutCard key={index} 
                             trainingPlan={trainingPlan}
                             type={type}
                             workoutIndex={index}
+                            dayNum={dayNum}
+                            icon={icon}
                         />;
             }
 
@@ -33,23 +43,12 @@ function Grid() {
                     key={index}
                 >
                     <div className="plan-card-header">
-                        <p>
-                            Day{" "}
-                            {(index / 8 <= 1)
-                                ? "0" + (index + 1)
-                                : index + 1}
-                        </p>
+                        <p>Day {dayNum}</p>
                     </div>
 
                     {isLocked ? (
                         <i className="fa-solid fa-lock"></i>
-                    ) : index % 3 === 0 ? (
-                        <i className="fa-solid fa-dumbbell"></i>
-                    ) : index % 3 === 1 ? (
-                        <i className="fa-solid fa-weight-hanging"></i>
-                    ) : (
-                        <i className="fa-solid fa-bolt"></i>
-                    )}
+                    ) : (icon)}
 
                     <div className="plan-card-header">
                         <h4>
