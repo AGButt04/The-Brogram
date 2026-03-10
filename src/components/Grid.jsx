@@ -32,7 +32,7 @@ function Grid() {
                             trainingPlan={trainingPlan}
                             type={type}
                             workoutIndex={index}
-                            dayNum={dayNum}
+                            dayNum={dayNum} 
                             icon={icon}
                         />;
             }
