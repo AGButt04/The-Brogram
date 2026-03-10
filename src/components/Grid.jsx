@@ -4,7 +4,7 @@ import WorkoutCard from "./WorkoutCard";
 
 function Grid() {
     const isLocked = false;
-    const selectedWorkout = 0;
+    const selectedWorkout = 4;
 
     function mapping() {
         const workouts = Object.keys(training_plan);
@@ -20,7 +20,11 @@ function Grid() {
             const trainingPlan = training_plan[index];
 
             if (index === selectedWorkout) {
-                return <WorkoutCard key={index} />;
+                return <WorkoutCard key={index} 
+                            trainingPlan={trainingPlan}
+                            type={type}
+                            workoutIndex={index}
+                        />;
             }
 
             return (
