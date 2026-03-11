@@ -3,9 +3,12 @@ import React from "react";
 function WorkoutCard(props) {
     const { trainingPlan, workoutIndex, type, dayNum, icon } = props;
     const { warmup, workout } = trainingPlan || {};
+    const showExerciseDescription = {name: 'Hello', description: 'Ghani Agya je'};
 
     return (
         <div className="workout-container">
+            <Modal showExerciseDescription={showExerciseDescription} handleCloseModal={() => {}}/>
+
             <div className="workout-card card">
                 <div className="plan-card-header">
                     <p>Day {dayNum}</p>
