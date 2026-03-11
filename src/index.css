@@ -89,3 +89,33 @@ h3, .training-plan-grid {
     gap: 0.5rem;
     overflow-x: auto;
 }
+
+.exercise-name {
+    grid-column: span 3 / span 3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.exercise-name p {
+    font-weight: 400;
+}
+
+.weight-input {
+    grid-column: span 2 / span 2;
+
+}
+
+.workout-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
