@@ -20,31 +20,33 @@ function Grid() {
     function mapping() {
         const workouts = Object.keys(training_plan);
 
-        return workouts.map((workout, index) => {
+        return workouts.map((workout, workoutIndex) => {
             const type =
-                index % 3 === 0
+                workoutIndex % 3 === 0
                     ? "Push"
-                    : index % 3 === 1
+                    : workoutIndex % 3 === 1
                     ? "Pull"
                     : "Legs";
 
-            const trainingPlan = training_plan[index];
-            const dayNum = (index / 8 <= 1)? "0" + (index + 1) : index + 1;
-            const icon = index % 3 === 0 ? (
+            const trainingPlan = training_plan[workoutIndex];
+            const dayNum = (workoutIndex / 8 <= 1)? "0" + (workoutIndex + 1) : workoutIndex + 1;
+            const icon = workoutIndex % 3 === 0 ? (
                         <i className="fa-solid fa-dumbbell"></i>
-                    ) : index % 3 === 1 ? (
+                    ) : workoutIndex % 3 === 1 ? (
                         <i className="fa-solid fa-weight-hanging"></i>
                     ) : (
                         <i className="fa-solid fa-bolt"></i>
                     ) 
 
-            if (index === selectedWorkout) {
-                return <WorkoutCard key={index} 
+            if (workoutIndex === selectedWorkout) {
+                return <WorkoutCard key={workoutIndex} 
                             trainingPlan={trainingPlan}
                             type={type}
-                            workoutIndex={index}
+                            workoutIndex={workoutIndex}
                             dayNum={dayNum} 
                             icon={icon}
+                            handleSave={handleSave}
+                            handleComplete={handleComplete}
                         />;
             }
 
@@ -53,7 +55,7 @@ function Grid() {
                     setSelectedWorkout(workoutIndex)
                 }}
                     className={"card plan-card " + (isLocked ? "inactive" : "")}
-                    key={index}
+                    key={workoutIndex}
                 >
                     <div className="plan-card-header">
                         <p>Day {dayNum}</p>
