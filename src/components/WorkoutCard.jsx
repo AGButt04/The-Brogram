@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "./Modal";
+import { exerciseDescriptions } from "../utils";
 
 function WorkoutCard(props) {
     const { trainingPlan, workoutIndex, type, dayNum, icon } = props;
     const { warmup, workout } = trainingPlan || {};
-    const showExerciseDescription = {name: 'Hello', description: 'Ghani Agya je'};
+    const [showExerciseDescription, setShowExerciseDescription ] = useState(null);
 
     return (
         <div className="workout-container">
-            <Modal showExerciseDescription={showExerciseDescription} handleCloseModal={() => {}}/>
+            {showExerciseDescription && (
+                <Modal showExerciseDescription={showExerciseDescription} 
+                    handleCloseModal={() => {
+                        setShowExerciseDescription(null);
+                    }}
+                />
+            )}
 
             <div className="workout-card card">
                 <div className="plan-card-header">
@@ -32,7 +40,12 @@ function WorkoutCard(props) {
                             <React.Fragment key={warmupIndex}>
                                 <div className="exercise-name">
                                     <p>{warmupIndex + 1}. {warmupExercise.name}</p>
-                                    <button className="help-icon">
+                                    <button onClick={() => {
+                                        setShowExerciseDescription({
+                                            name: warmupExercise.name,
+                                            description: exerciseDescriptions[warmupExercise.name]
+                                        })
+                                    }} className="help-icon">
                                         <i className="fa-regular fa-circle-question" />
                                     </button>
                                 </div>
@@ -58,7 +71,12 @@ function WorkoutCard(props) {
                             <React.Fragment key={workoutIndex}>
                                 <div className="exercise-name">
                                     <p>{workoutIndex + 1}. {workoutExercise.name}</p>
-                                    <button className="help-icon">
+                                    <button onClick={() => {
+                                        setShowExerciseDescription({
+                                            name: workoutExercise.name,
+                                            description: exerciseDescriptions[workoutExercise.name]
+                                        })
+                                    }} className="help-icon">
                                         <i className="fa-regular fa-circle-question" />
                                     </button>
                                 </div>
