@@ -227,3 +227,12 @@ button.help-icon:hover {
     }
 }
 
+@media (min-width: 768px) {
+    .training-plan-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .workout-container {
+        grid-column: span 5 / span 5;
+    }
+}
