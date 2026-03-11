@@ -29,3 +29,25 @@ main {
     gap: 0.5rem;
     flex: 1;
 }
+
+h3, .training-plan-grid {
+    padding-top: 2rem;
+}
+
+.training-plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.plan-card {
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.inactive {
+    position: relative;
+    z-index: 1;
+    cursor: not-allowed;
+}

@@ -61,7 +61,7 @@ function Grid() {
     }
 
     return (
-        <div className="training-grid-plan">
+        <div className="training-plan-grid">
             {mapping()}
         </div>
     );
