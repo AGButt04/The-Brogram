@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { workoutProgram as training_plan } from "../utils/index";
 import WorkoutCard from "./WorkoutCard";
 
@@ -10,12 +10,37 @@ function Grid() {
 
     function handleSave(index, data) {
         // SAVE TO THE LOCAL STORAGE AND MODIFY THE SAVED WORKOUTS
+        const newObj = {
+            ...savedWorkouts,
+            [index]: {
+                ...data,
+                isComplete: !!data.isComplete || !!savedWorkouts?.[index]?.isComplete
+            }
+        }
+
+        setSavedWorkouts(newObj);
+        localStorage.setItem('brogram', JSON.stringify(newObj));
+        setSelectedWorkout(null);
     }
 
     function handleComplete(index, data) {
         //  Complete a workout (Basically we modify the completed status)
-
+        const newObj = {...data};
+        newObj.isComplete = true;
+        handleSave(index, newObj);
     }
+
+    // Reading the stored data back in.
+    useEffect(() => {
+        if (!localStorage) { return }
+
+        let savedData = {};
+        if (localStorage.getItem('brogram')) {
+            savedData = JSON.parse(localStorage.getItem('brogram'));
+        }
+
+        setSavedWorkouts(savedData);
+    }, []);
 
     function mapping() {
         const workouts = Object.keys(training_plan);
@@ -40,6 +65,7 @@ function Grid() {
 
             if (workoutIndex === selectedWorkout) {
                 return <WorkoutCard key={workoutIndex} 
+                            savedWeights={savedWorkouts?.[workoutIndex]?.weights}
                             trainingPlan={trainingPlan}
                             type={type}
                             workoutIndex={workoutIndex}
