@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { workoutProgram as training_plan } from "../utils/index";
 import WorkoutCard from "./WorkoutCard";
 
 function Grid() {
+    const [selectedWorkout, setSelectedWorkout] = useState(null);
+    const [ savedWorkouts, setSavedWorkouts ] = useState(null);
+    const completedWorkouts = [];
     const isLocked = false;
-    const selectedWorkout = 4;
+
+    function handleSave(index, data) {
+        // SAVE TO THE LOCAL STORAGE AND MODIFY THE SAVED WORKOUTS
+    }
+
+    function handleComplete(index, data) {
+        //  Complete a workout (Basically we modify the completed status)
+
+    }
 
     function mapping() {
         const workouts = Object.keys(training_plan);
@@ -38,7 +49,9 @@ function Grid() {
             }
 
             return (
-                <button
+                <button onClick={() => {
+                    setSelectedWorkout(workoutIndex)
+                }}
                     className={"card plan-card " + (isLocked ? "inactive" : "")}
                     key={index}
                 >
