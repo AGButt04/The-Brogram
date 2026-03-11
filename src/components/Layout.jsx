@@ -11,7 +11,7 @@ function Layout(props) {
     const footer = (
         <footer>
             <p>Built by 
-                <a href="https://www.AGButt.com" target="_blank"> Abdul G Butt </a>
+                <a href="https://agbutt.netlify.app/" target="_blank"> Abdul G Butt </a>
                 <br /> Styled with
                 <a href="https://www.fantacss.smoljames.com" target="_blank" > FantaCSS</a>
             </p>
