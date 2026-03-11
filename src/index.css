@@ -119,3 +119,29 @@ footer {
     padding: 4rem 0 2rem 0;
     text-align: center;
 }
+
+input:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+button.help-icon {
+    pointer-events: none;
+    opacity: 0;
+    padding: 0 0.5rem;
+    color: var(--color-link);
+    border: unset;
+    box-shadow: unset;
+    transform: unset;
+    width: fit-content;
+}
+
+button.help-icon:hover {
+    transform: unset;
+    box-shadow: unset;
+}
+
+.exercise-name:hover button.help-icon{
+    pointer-events: all;
+    opacity: 1;
+}
