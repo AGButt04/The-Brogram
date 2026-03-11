@@ -5,8 +5,10 @@ import WorkoutCard from "./WorkoutCard";
 function Grid() {
     const [selectedWorkout, setSelectedWorkout] = useState(null);
     const [ savedWorkouts, setSavedWorkouts ] = useState(null);
-    const completedWorkouts = [];
-    const isLocked = false;
+    const completedWorkouts = Object.keys(savedWorkouts || []).filter((val) => {
+        const entry = savedWorkouts[val];
+        return entry.isComplete;
+    });
 
     function handleSave(index, data) {
         // SAVE TO THE LOCAL STORAGE AND MODIFY THE SAVED WORKOUTS
@@ -46,6 +48,11 @@ function Grid() {
         const workouts = Object.keys(training_plan);
 
         return workouts.map((workout, workoutIndex) => {
+            const isLocked = (workoutIndex === 0)? false : 
+            !completedWorkouts.includes(`${workoutIndex - 1}`)
+
+            console.log(workoutIndex, isLocked);
+
             const type =
                 workoutIndex % 3 === 0
                     ? "Push"
@@ -78,6 +85,7 @@ function Grid() {
 
             return (
                 <button onClick={() => {
+                    if (isLocked) { return }
                     setSelectedWorkout(workoutIndex)
                 }}
                     className={"card plan-card " + (isLocked ? "inactive" : "")}
