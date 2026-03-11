@@ -3,7 +3,8 @@ import Modal from "./Modal";
 import { exerciseDescriptions } from "../utils";
 
 function WorkoutCard(props) {
-    const { trainingPlan, workoutIndex, type, dayNum, icon, savedWeights } = props;
+    const { trainingPlan, workoutIndex, type, dayNum, 
+        icon, savedWeights, handleSave, handleComplete } = props;
 
     const { warmup, workout } = trainingPlan || {};
     const [showExerciseDescription, setShowExerciseDescription ] = useState(null);
@@ -78,11 +79,11 @@ function WorkoutCard(props) {
                 <h6>Reps</h6>
                 <h6 className="weight-input">Max Weight</h6>
                 {
-                    workout.map((workoutExercise, workoutIndex) => {
+                    workout.map((workoutExercise, wIndex) => {
                         return (
-                            <React.Fragment key={workoutIndex}>
+                            <React.Fragment key={wIndex}>
                                 <div className="exercise-name">
-                                    <p>{workoutIndex + 1}. {workoutExercise.name}</p>
+                                    <p>{wIndex + 1}. {workoutExercise.name}</p>
                                     <button onClick={() => {
                                         setShowExerciseDescription({
                                             name: workoutExercise.name,
@@ -109,8 +110,12 @@ function WorkoutCard(props) {
             </div>
 
             <div className="workout-buttons">
-                <button>Save & Exit</button>
-                <button disabled={true}>Complete</button>
+                <button onClick={() => {
+                    handleSave(workoutIndex, { weights });
+                }}>Save & Exit</button>
+                <button onClick={() => {
+                    handleComplete(workoutIndex, { weights });
+                }} disabled={true}>Complete</button>
             </div>
 
         </div>
