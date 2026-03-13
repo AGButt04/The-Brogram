@@ -49,6 +49,10 @@ h3, .training-plan-grid {
     gap: 1rem;
 }
 
+.reset-btn {
+    background-color: red;
+}
+
 .plan-card {
     position: relative;
     cursor: pointer;
