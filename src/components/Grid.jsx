@@ -32,6 +32,15 @@ function Grid() {
         handleSave(index, newObj);
     }
 
+    function handleResetProgress() {
+        const shouldReset = window.confirm("Are you sure you want to reset everything?");
+        if (!shouldReset) return;
+
+        localStorage.removeItem("brogram");
+        setSavedWorkouts({});
+        setSelectedWorkout(null);
+    }
+
     // Reading the stored data back in.
     useEffect(() => {
         if (!localStorage) { return }
@@ -112,6 +121,7 @@ function Grid() {
     return (
         <div className="training-plan-grid">
             {mapping()}
+            <button className="reset-btn" onClick={handleResetProgress}>Reset all progress</button>
         </div>
     );
 }
