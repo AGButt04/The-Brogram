@@ -20,10 +20,6 @@ function Hero() {
                 </div>
                 <div className="rule-item">
                     <p><b>Reps</b></p>
-                    <p>Ensure that you are taking rest days where necessary</p>
-                </div>
-                <div className="rule-item">
-                    <p><b>Rest</b></p>
                     <p>Every rep is a pause rep following 
                         <abbr title="2 seconds down - 2 seconds pause - 2 seconds up"> 2 - 2 - 2 tempo</abbr>
                     </p>
